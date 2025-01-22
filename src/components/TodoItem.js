@@ -31,7 +31,7 @@ export class TodoItem extends Component {
     todoElement.innerHTML = `
       <span style="text-decoration: ${todo.completed ? 'line-through' : 'none'};">${todo.description}</span>
       <button class="mark-complete">Complete</button>
-      <button class="delete-todo"></button>
+      <button class="delete-todo">Delete</button>
     `;
 
     todoElement.querySelector('.mark-complete').addEventListener('click', () => this.handleMarkComplete());
