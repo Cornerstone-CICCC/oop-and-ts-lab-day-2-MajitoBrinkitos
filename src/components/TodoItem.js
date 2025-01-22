@@ -10,7 +10,7 @@ export class TodoItem extends Component {
     const todoElement = document.createElement('li')
     todoElement.className = "todo-item";
     todoElement.innerHTML = `
-      <span>${todo.description}</span>;
+      <span>${todo.description}</span>
     `
 
     return todoElement;

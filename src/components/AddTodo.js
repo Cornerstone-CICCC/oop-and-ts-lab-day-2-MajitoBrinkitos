@@ -4,40 +4,44 @@ import { TodoList } from "./TodoList.js";
 export class AddTodo extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      newTodo: ""
-    };
+    this.newTodo = "";
 
-    //Bind methods
+    //bind methods
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleAddTodo = this.handleAddTodo.bind(this);
   }
 
-  handleInputChange(event){
+  handleInputChange (event) {
     console.log("Input changed:", event.target.value);
-    this.setState({
-      newTodo: event.target.value
-    });
+    this.newTodo = event.target.value;
   }
 
-  handleAddTodo(){
+  handleAddTodo () {
     console.log("Add button clicked");
-    const {TodoContext} = this.props;
-    TodoContext.addTodo(this.state.newTodo);
-    this.setState({ newTodo: "" });
+    const { TodoContext } = this.props;
+    const newTodoDescription = this.newTodo;
 
-    console.log("Todo added:", this.state.newTodo);
+    console.log("Todo to be added:", newTodoDescription);
 
-    document.querySelector('#wrapper-todos').innerHTML = '';
-    const todos = new TodoList({
-      TodoContext: TodoContext
-    }).render();
-    document.querySelector('#wrapped-todos').appendChild(todos);
+    if(newTodoDescription.trim() !== ""){
+      TodoContext.addTodo(newTodoDescription);
+      this.newTodo = "";
+
+      console.log("Todo added to context:", newTodoDescription);
+
+      document.querySelector('#wrapper-todos').innerHTML = '';
+      const todos = new TodoList({
+        TodoContext: TodoContext
+        }).render();
+      document.querySelector('#wrapper-todos').appendChild(todos);
+      } else {
+        console.log("Todo description is empty, not adding to context.");
+      }
   }
 
   render() {
     const addElement = document.createElement('div')
-    addElement.className = "add-todo"
+    addElement.className = "add-todo";
     addElement.innerHTML = `
       <input type="text" id="todo-input" placeholder="Enter task details...">
       <button id="todo-add-btn">Add To Do</button>
@@ -47,6 +51,7 @@ export class AddTodo extends Component {
 
     addElement.querySelector('#todo-add-btn').addEventListener('click', this.handleAddTodo);
 
+    console.log("Render method called, input value:", this.newTodo);
 
     return addElement;
   }
