@@ -30,7 +30,7 @@ export class TodoItem extends Component {
     todoElement.className = "todo-item";
     todoElement.innerHTML = `
       <span style="text-decoration: ${todo.completed ? 'line-through' : 'none'};">${todo.description}</span>
-      <button class="mark-complete">Complete</button>
+      <button class="mark-complete">${todo.completed ? 'Completed' : 'Not Completed'}</button>
       <button class="delete-todo">Delete</button>
     `;
 
