@@ -31,6 +31,10 @@ button {
   gap: 1rem;
 }
 
+h1 {
+  text-align: center;
+}
+
 .add-todo {
   display: flex;
   gap: .5rem;
@@ -50,7 +54,10 @@ button {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+}
+
+ul {
+  padding-inline-start: 0;
 }
 
 .todo-list li {
@@ -63,7 +70,10 @@ button {
 
 .todo-list li.completed span {
   text-decoration: line-through;
+  justify-content: end;
   color: #aaa;
+  display: flex;
+  justify-content: start;
 }
 
 .todo-list button {

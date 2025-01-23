@@ -29,9 +29,14 @@ export class TodoItem extends Component {
     const todoElement = document.createElement('li')
     todoElement.className = "todo-item";
     todoElement.innerHTML = `
-      <span style="text-decoration: ${todo.completed ? 'line-through' : 'none'};">${todo.description}</span>
-      <button class="mark-complete">${todo.completed ? 'Completed' : 'Not Completed'}</button>
-      <button class="delete-todo">Delete</button>
+      <span style="text-decoration: ${todo.completed ? 'line-through' : 'none'}; color: ${todo.completed ? 'lightgrey' : 'none'}; ">${todo.description}</span>
+      <div class="buttons">
+            <button class="mark-complete">
+            ${todo.completed ? 'Completed' : 'Not Completed'}
+            </button>
+           <button class="delete-todo">Delete</button>
+      </div>
+
     `;
 
     todoElement.querySelector('.mark-complete').addEventListener('click', () => this.handleMarkComplete());
